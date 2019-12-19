@@ -16,13 +16,18 @@
     <meta name="description" content="" />
     
     <title>
-          Ryhen&#39;blog |Code|Life|Love
+      应用密码学复习重点 - Ryhen&#39;blog |Code|Life|Love
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon1.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/style/style.css">
   </head>
   <body>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#密码杂凑函数"><span class="toc-text">密码杂凑函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分组密码"><span class="toc-text">分组密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#序列密码"><span class="toc-text">序列密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MAC和AEAD"><span class="toc-text">MAC和AEAD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#密码分析"><span class="toc-text">密码分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#公钥密码"><span class="toc-text">公钥密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#素数和素性测试"><span class="toc-text">素数和素性测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RSA算法"><span class="toc-text">RSA算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字证书与PKI"><span class="toc-text">数字证书与PKI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数学困难问题"><span class="toc-text">数学困难问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#硬件安全"><span class="toc-text">硬件安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#密文计算算法"><span class="toc-text">密文计算算法</span></a></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -156,125 +161,166 @@
     </div>
     <div id="container">
       <div class="main animated bounceInRight delay-0.7s">
-        
-<div class="posts">
-  <ul>
-     
-
-    
-
-  <li class="item">
-
+        <article class="post-entry">
+    <div class="header">
       
-
-      
-      <div class="describe">
-        <div class="title">
-          <a href="/2019/12/11/LeetCode-101/">LeetCode-101 对称二叉树</a>
-        </div>
-        <div class="date">
+      <div class="title">应用密码学复习重点</div>
+      <div class="meta">
+        <span class="item">
           <span class="iconfont icon-time-circle"></span>
-          <span>19/12/11</span>
-        </div>
-        
-        <div class="meta">
-          <div class="l">
-            <div class="warp">
-              
-              <span class="iconfont icon-folder"></span>
-              <span class="desp">
-                 
-                <a href="/categories/Study">Study</a>
-                 
-              </span>
-              
-            </div>
+          <span>2019/12/19</span>
+        </span>
 
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Study">Study</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/密码学">密码学</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <h3 id="密码杂凑函数">密码杂凑函数<a class="post-anchor" href="#密码杂凑函数"></a></h3><ol>
+<li>密码杂凑函数的定义和安全性：抗原性攻击、抗第二原像攻击、抗碰撞</li>
+<li>密码杂凑函数的比特安全性及原理</li>
+<li>常用密码杂凑函数极其构造方式、杂凑值长度和安全性</li>
+<li>密码杂凑函数的应用</li>
+</ol>
+<h3 id="分组密码">分组密码<a class="post-anchor" href="#分组密码"></a></h3><ol>
+<li>对加密通信的攻击：选择明文攻击、选择密文攻击</li>
+<li>分组密码的定义</li>
+<li>分组密码的两种典型构造：Feistel网络和S-P网络</li>
+<li>常用分组密码极其构造方式、密钥长度和安全性</li>
+<li>分组密码的模式（加密模式）</li>
+</ol>
+<h3 id="序列密码">序列密码<a class="post-anchor" href="#序列密码"></a></h3><ol>
+<li>One-Time Pad</li>
+<li>序列密码的概念及其与分组密码的区别</li>
+</ol>
+<h3 id="MAC和AEAD">MAC和AEAD<a class="post-anchor" href="#MAC和AEAD"></a></h3><ol>
+<li>完整性（Integrity）及其对安全性的影响</li>
+<li>MAC（消息认证码）算法的定义</li>
+<li>AEAD的定义</li>
+<li>常用的MAC算法和AEAD模式</li>
+</ol>
+<h3 id="密码分析">密码分析<a class="post-anchor" href="#密码分析"></a></h3><ol>
+<li>差分密码分析</li>
+<li>线性密码分析</li>
+</ol>
+<h3 id="公钥密码">公钥密码<a class="post-anchor" href="#公钥密码"></a></h3><ol>
+<li>单向函数和单向陷门函数的定义和实例</li>
+<li>群、环、域的定义和实例</li>
+<li>公钥加密（Public Key Encryption）的定义</li>
+<li>欧几里得算法和扩展欧几里得算法</li>
+<li>Diffie-Hellman、ElGamal加密算法</li>
+<li>椭圆曲线的定义和椭圆曲线算术：点加、倍点、点的标量乘法（PPoint Scalar Multiplication）</li>
+<li>椭圆曲线困难问题ECDLP</li>
+<li>椭圆曲线密钥长度和比特安全性的关系</li>
+</ol>
+<h3 id="素数和素性测试">素数和素性测试<a class="post-anchor" href="#素数和素性测试"></a></h3><ol>
+<li>素数、本原根（Primitive Roots）的定义</li>
+<li>费马小定理、欧拉公式</li>
+<li>素数生成算法</li>
+<li>Miller-Rabin素性测试算法</li>
+</ol>
+<h3 id="RSA算法">RSA算法<a class="post-anchor" href="#RSA算法"></a></h3><ol>
+<li>RSA加密、RSA签名</li>
+<li>为什么教科书中的RSA算法不安全</li>
+<li>RSA的填充方案</li>
+</ol>
+<h3 id="数字证书与PKI">数字证书与PKI<a class="post-anchor" href="#数字证书与PKI"></a></h3><ol>
+<li>数字签名的概念与典型数字签名suanfa</li>
+<li>数字证书、根证书、证书链、CA、PKI的概念，通过浏览器观察网站的证书链，了解现实中证书的各个域、DV/EV/OV证书的区别</li>
+<li>基于身份的密码（Identity-Based Cryptography）的定义、典型构造、应用以及和传统公钥密码/PKI的区别</li>
+</ol>
+<h3 id="数学困难问题">数学困难问题<a class="post-anchor" href="#数学困难问题"></a></h3><ol>
+<li>离散对数问题、椭圆曲线离散对数问题、证书分解问题、DH问题、ECDH问题、RSA问题</li>
+<li>平滑数的概念及其作用</li>
+<li>大步小步法和Pohlig-Hellman算法</li>
+</ol>
+<h3 id="硬件安全">硬件安全<a class="post-anchor" href="#硬件安全"></a></h3><ol>
+<li>密码硬件安全等级1~4级的主要特征</li>
+<li>侧信道攻击的种类</li>
+</ol>
+<h3 id="密文计算算法">密文计算算法<a class="post-anchor" href="#密文计算算法"></a></h3><ol>
+<li>同态加密、基于属性的加密（Attribute-Base Encryption）、可搜索加密、秘密共享/秘密分割、零知识证明、承诺、隐私信息获取（PIR）、不经意传输（OT）的基本概念和应用场景</li>
+<li>典型同态加密算法支持的密文计算能力（明文类型和支持的计算类型、数量）</li>
+</ol>
+
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
             
-            <div class="warp">
-              <span class="iconfont icon-tag1"></span>
-              <span class="desp">
-                 
-                <a href="/tags/LeetCode">LeetCode</a>
-                 
-              </span>
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.jpg" target="_block" class="bg" style="background-image:url('/images/zhifubao.jpg')"></a>
+              支付宝
             </div>
             
-            <div class="warp">
-              <div class="share" data-url="/2019/12/11/LeetCode-101/">
-                <span class="iconfont icon-share"></span>
-              </div>
-              <div class="desp share" data-url="/2019/12/11/LeetCode-101/">
-                <a href="#">分享</a>
-              </div>
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.jpg" target="_block" class="bg" style="background-image:url('/images/weixin.jpg')"></a>
+              微信
             </div>
-          </div>
-          <div class="r">
-            <a href="/2019/12/11/LeetCode-101/">Read More</a>
-          </div>
+            
         </div>
       </div>
-    </li>
-     
-
-    
-
-  <li class="item">
-
-      
-
-      
-      <div class="describe">
-        <div class="title">
-          <a href="/2019/12/06/hello-world/">Hello World</a>
-        </div>
-        <div class="date">
-          <span class="iconfont icon-time-circle"></span>
-          <span>19/12/06</span>
-        </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
         
-        <div class="meta">
-          <div class="l">
-            <div class="warp">
-              
-              <span class="iconfont icon-folder"></span>
-              <span class="desp">
-                
-              </span>
-              
-            </div>
+    </div>
+    <div class="item right">
+        
+          <a href="/2019/12/11/LeetCode-122/">LeetCode-122 买卖股票的最佳时机II</a>
+        
+    </div>
+  </div>
 
-            
-            <div class="warp">
-              <span class="iconfont icon-tag1"></span>
-              <span class="desp">
-                
-              </span>
-            </div>
-            
-            <div class="warp">
-              <div class="share" data-url="/2019/12/06/hello-world/">
-                <span class="iconfont icon-share"></span>
-              </div>
-              <div class="desp share" data-url="/2019/12/06/hello-world/">
-                <a href="#">分享</a>
-              </div>
-            </div>
-          </div>
-          <div class="r">
-            <a href="/2019/12/06/hello-world/">Read More</a>
-          </div>
-        </div>
-      </div>
-    </li>
-    
-  </ul>
-</div>
+  
 
-<div class="paginator">
-  <a class="page-number" href="/">1</a><span class="page-number current">2</span>
-</div>
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="/http:/ryhenkao.github.io/2019/12/19/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%A4%8D%E4%B9%A0%E9%87%8D%E7%82%B9/">/http:/ryhenkao.github.io/2019/12/19/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%A4%8D%E4%B9%A0%E9%87%8D%E7%82%B9/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>的博客，转载请注明出处！
+    </div>
+  </div>
 
+  <div id="comment"></div>
+
+  
+  
+</article>
         <footer>
           <div class="copyright">
             ©2019
