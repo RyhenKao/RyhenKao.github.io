@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    
+    <title>
+      数据加密标准 DES - Ryhen&#39;blog |Code|Life|Love
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon1.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/style/style.css">
+  </head>
+  <body>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分组密码"><span class="toc-text">分组密码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#代替与换位"><span class="toc-text">代替与换位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Feistel结构"><span class="toc-text">Feistel结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DES"><span class="toc-text">DES</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#应用"><span class="toc-text">应用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#结论"><span class="toc-text">结论</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DES算法"><span class="toc-text">DES算法</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          首页
+        </a>
+        
+        <a href="/archives" class="">
+          归档
+        </a>
+        
+        <a href="/categories" class="">
+          分类
+        </a>
+        
+        <a href="/tags" class="">
+          标签
+        </a>
+        
+        <a href="/friends" class="">
+          友链
+        </a>
+        
+        <a href="/about" class="">
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">Ryhen Kao</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">Ryhen Kao</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            首页
+          </a>
+          
+          <a href="/archives" class="">
+            归档
+          </a>
+          
+          <a href="/categories" class="">
+            分类
+          </a>
+          
+          <a href="/tags" class="">
+            标签
+          </a>
+          
+          <a href="/friends" class="">
+            友链
+          </a>
+          
+          <a href="/about" class="">
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/RyhenKao" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://www.instagram.com/ryhen.kao/" target="_block">
+              <span class="iconfont icon-instagram"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">数据加密标准 DES</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2019/12/19</span>
+        </span>
+
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Study">Study</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/密码学">密码学</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <h2 id="概念">概念<a class="post-anchor" href="#概念"></a></h2><p>对称加密：加密密钥=解密密钥</p>
+<p>序列（流）密码：对明文数据进行逐位（每一比特或是每一字节）进行异或</p>
+<p>分组密码： 将明文数据分成等长的若干组再进行处理</p>
+<h3 id="分组密码">分组密码<a class="post-anchor" href="#分组密码"></a></h3><p>输出块中的每一位都是由（输入块+钥匙）的每一位决定的</p>
+<p>方式：代替、置换、异或</p>
+<p>产生效果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">混淆：代替、异或</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">扩散：移位</span></pre></td></tr></table></figure>
+<p>特点：良好的扩散性和对插入的敏感性</p>
+<h4 id="代替与换位">代替与换位<a class="post-anchor" href="#代替与换位"></a></h4><p>代替（S盒）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">混淆：不同输入导致相同的输出</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">扩散：输入数据中1bit的变换造成多个bit的输出变换</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">操作：算术&#x2F;逻辑运算，非线性映射</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">受计算机字长和计算能力的限制，代替处理的数据宽度有限。需要多个代替模块</span></pre></td></tr></table></figure>
+<p>换位（置换）permutation</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">交换各个数据位的位置</span></pre></td></tr></table></figure>
+
+<p>代替+换位=更大规模的混淆与扩散效果</p>
+<h3 id="Feistel结构">Feistel结构<a class="post-anchor" href="#Feistel结构"></a></h3><p>一次加密</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">(密钥+临时数据)代替与换位&#x3D;密钥流</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">(明文+密钥流)异或&#x3D;密文</span></pre></td></tr></table></figure>
+
+<p>多次加密</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">将上一次加密得到的密文作为下一轮的“明文”输入继续迭代加密</span></pre></td></tr></table></figure>
+
+
+<p>Feistel </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">将明文分为左右段（L与R），每个一次加密时将L作为上述的明文，</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">R作为临时数据与密钥进行代替与换位构成密钥流。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">密钥流与L进行异或，最后再将结果左右交换（L、R互换）进入下一轮。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">最后一轮不进行左右交换。</span></pre></td></tr></table></figure>
+<p>扩展Feistel</p>
+<h3 id="DES">DES<a class="post-anchor" href="#DES"></a></h3><h5 id="特点">特点<a class="post-anchor" href="#特点"></a></h5><p>分组密码 ：明、密文分组长度64比特，密钥64比特（8比特做奇偶校验）</p>
+<p>面向二进制数据</p>
+<p>对合运算 </p>
+<p>综合运用了置换、代替、异或</p>
+<p>属于典型的Feistel结构</p>
+<h5 id="应用">应用<a class="post-anchor" href="#应用"></a></h5><p>世界范围内的广泛应用</p>
+<p>被许多国际组织采用为标准</p>
+<h5 id="结论">结论<a class="post-anchor" href="#结论"></a></h5><p>其设计目标是安全的</p>
+<p>设计精巧、容易实现、使用方便</p>
+<p>为国际信息安全发挥重要作用</p>
+<h5 id="DES算法">DES算法<a class="post-anchor" href="#DES算法"></a></h5><ol>
+<li>密钥扩展</li>
+<li>16轮的Feistel结构 </li>
+<li>数学描述</li>
+<li>算法框架<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">置换1：64bit筛选剩余56bit，平均分成左右两部分C，D</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">循环移位：C、D两段分别进行循环移位 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">置换2：56bit筛选剩余48bit</span></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="5">
+<li><p>置换选择1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">去掉每8位中的最后一位（奇偶校验位）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">打乱重排（行列互换）</span></pre></td></tr></table></figure>
+</li>
+<li><p>循环移位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">按照固定好的移位步数进行移位</span></pre></td></tr></table></figure>
+</li>
+<li><p>置换选择2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">按照固定的矩阵从56bit选出48bit</span></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="8">
+<li><p>16轮Feistel</p>
+<p>8.1 初始置换IP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">按照固定矩阵进行初始置换</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">对加密没有贡献</span></pre></td></tr></table></figure>
+
+<p>8.2 逆初始置换IP-1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">与初始置换互逆</span></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<p>   8.3 加密函数F<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">扩展置换E：使用重复数据将把32位扩展成48位</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">S盒：每一个S盒有6个输入4个输出，非线性压缩；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">S盒的输入s1s2s3s4s5s6中，s1s6表示行号，</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">s2s3s4s5表示列号，通过行列序号位置找到矩阵中</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">的对应值进行变换；DES中唯一的非线性变换；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">共有8个S盒；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">置换运算P:把数据打乱重排</span></pre></td></tr></table></figure></p>
+<ol start="9">
+<li>解密运算</li>
+</ol>
+<p>由于DES的对合特性：<br>子密钥的使用顺序与加密时相反，从K16~K1依次使用，即可解密。</p>
+<p>10 . 破译</p>
+<p>弱密钥</p>
+<p>互补对称性</p>
+
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.jpg" target="_block" class="bg" style="background-image:url('/images/zhifubao.jpg')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.jpg" target="_block" class="bg" style="background-image:url('/images/weixin.jpg')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2019/12/19/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%A4%8D%E4%B9%A0%E9%87%8D%E7%82%B9/">应用密码学复习重点</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="/http:/ryhenkao.github.io/2019/12/19/DES/">/http:/ryhenkao.github.io/2019/12/19/DES/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2019
+            <a href="http://ryhenkao.github.io">Ryhen Kao</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"service_worker\":{\"open\":false}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 
