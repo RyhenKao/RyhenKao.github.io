@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    
+    <title>
+      公钥密码 - Ryhen&#39;blog |Code|Life|Love
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon1.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/style/style.css">
+  </head>
+  <body>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#公钥密码的基本思想"><span class="toc-text">公钥密码的基本思想</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#传统密码的优缺点"><span class="toc-text">传统密码的优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#公开密钥密码的基本思想"><span class="toc-text">公开密钥密码的基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#公开密钥密码的基本条件"><span class="toc-text">公开密钥密码的基本条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#公钥密码的理论模型"><span class="toc-text">公钥密码的理论模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#公钥密码的基本工作方式"><span class="toc-text">公钥密码的基本工作方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElGamal"><span class="toc-text">ElGamal</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加密"><span class="toc-text">加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解密"><span class="toc-text">解密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全性"><span class="toc-text">安全性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Diffie-Hellman密钥交换"><span class="toc-text">Diffie-Hellman密钥交换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#D-H密钥交换算法"><span class="toc-text">D-H密钥交换算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#椭圆曲线"><span class="toc-text">椭圆曲线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#椭圆曲线的定义"><span class="toc-text">椭圆曲线的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#椭圆曲线的算数"><span class="toc-text">椭圆曲线的算数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#椭圆曲线困难问题"><span class="toc-text">椭圆曲线困难问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ECDLP求解"><span class="toc-text">ECDLP求解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#椭圆曲线的安全性"><span class="toc-text">椭圆曲线的安全性</span></a></li></ol></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          首页
+        </a>
+        
+        <a href="/archives" class="">
+          归档
+        </a>
+        
+        <a href="/categories" class="">
+          分类
+        </a>
+        
+        <a href="/tags" class="">
+          标签
+        </a>
+        
+        <a href="/friends" class="">
+          友链
+        </a>
+        
+        <a href="/about" class="">
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">Ryhen Kao</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">Ryhen Kao</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            首页
+          </a>
+          
+          <a href="/archives" class="">
+            归档
+          </a>
+          
+          <a href="/categories" class="">
+            分类
+          </a>
+          
+          <a href="/tags" class="">
+            标签
+          </a>
+          
+          <a href="/friends" class="">
+            友链
+          </a>
+          
+          <a href="/about" class="">
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/RyhenKao" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://www.instagram.com/ryhen.kao/" target="_block">
+              <span class="iconfont icon-instagram"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">公钥密码</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2019/12/28</span>
+        </span>
+
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Study">Study</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/密码学">密码学</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <h2 id="公钥密码的基本思想">公钥密码的基本思想<a class="post-anchor" href="#公钥密码的基本思想"></a></h2><h3 id="传统密码的优缺点">传统密码的优缺点<a class="post-anchor" href="#传统密码的优缺点"></a></h3><ol>
+<li>优点<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">理论和实践都很成熟</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">安全容易把握</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">加解密速度快</span></pre></td></tr></table></figure></li>
+<li>缺点<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">收发双方持有相同密钥，Ke&#x3D;Kd，密钥分发困难，在网络环境更突出</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">不能方便地实现数字签名，商业等应用也不方便</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="公开密钥密码的基本思想">公开密钥密码的基本思想<a class="post-anchor" href="#公开密钥密码的基本思想"></a></h3><ol>
+<li>将密钥K一分为二：Ke和Kd。Ke专门加密，Kd专门解密，且Ke与Kd不相等</li>
+<li>由Ke不能计算出Kd，于是可以将Ke公开，使密钥Ke分配简单</li>
+<li>由于Ke与Kd不相等且由Ke不能计算出Kd，所以Kd可以作为用户的指纹，方便地实现数字签名</li>
+</ol>
+<h3 id="公开密钥密码的基本条件">公开密钥密码的基本条件<a class="post-anchor" href="#公开密钥密码的基本条件"></a></h3><p> E()和D()分别是加密和解密算法</p>
+<ol>
+<li><p>保密条件： D和E互逆，即D(E(M))=M</p>
+</li>
+<li><p>安全条件：Ke与Kd不相等且由Ke不能计算出Kd</p>
+</li>
+<li><p>实用条件：E和D都高效</p>
+</li>
+<li><p>保真条件：E(D(M))=M  </p>
+<p>满足条件1、2、3可以用于保密；<br>满足条件2、3、4可以用于保真（数字签名）；<br>四个条件同时满足即可用于保密和保真</p>
+</li>
+</ol>
+<h3 id="公钥密码的理论模型">公钥密码的理论模型<a class="post-anchor" href="#公钥密码的理论模型"></a></h3><p> 1.单向函数：y=f(x)需要满足以下两个函数</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">· 如果对于给定的x，计算y&#x3D;f(x)很容易</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">· 对于给定的y，要计算出x&#x3D;f^-1(y)很难</span></pre></td></tr></table></figure>
+
+<p> 2.利用单向函数构造密码</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">· 用正变换做加密，加密效率高</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">· 用逆变换做解密，安全，攻击者不可破译</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">· 但是合法的收信者也无法解密</span></pre></td></tr></table></figure>
+
+<p> 3.单向陷门函数</p>
+<p> 设函数y=f(x)且f具有陷门，满足以下两个条件称f(x)的单向陷门函数</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">· 如果对于给定的x，计算出y&#x3D;f(x)很容易</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">· 对于给定的y，如果不掌握陷门要计算出x很困难；如果掌握了陷门要计算出x很容易</span></pre></td></tr></table></figure>
+
+<p> 4.利用单向陷门函数构造密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">· 用正变换做加密，加密效率高</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">· 用逆变换做解密，安全</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">· 把陷门作为密钥，且只分配给合法用户。确保合法用户能够方便解密，而非法用户不能破译</span></pre></td></tr></table></figure>
+
+<p> 5.单向函数的研究现状</p>
+<p>理论上，不能证明单向函数一定存在</p>
+<p>实际上， 密码学认为之哟啊函数的单向性足够应用就行 </p>
+<p>已知单向性足够的函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">· 大合数的因式分解问题</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">· 有限域上的离散对数问题</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">· 椭圆曲线离散对数问题</span></pre></td></tr></table></figure>
+
+
+<h2 id="公钥密码的基本工作方式">公钥密码的基本工作方式<a class="post-anchor" href="#公钥密码的基本工作方式"></a></h2><p>· 设M为明文，C为密文，E为加密算法，D为解密算法</p>
+<p>· 每个用户都配置一对密钥Ke（公开的加密密钥）和Kd（保密的解密密钥）</p>
+<p>· 将所有哦用户的公开加密密钥Ke存入共享的密钥数据库PKDB</p>
+<p>· 保密的解密密钥Kd由用户妥善保管</p>
+<p> 1.确保数据的秘密性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">发送方：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    1.A查找PKDB（公钥数据库），找到B的公开密钥KeB</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    2.A用KeB加密密文M得到密文C：C&#x3D;E(M,KeB)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    3.A将C发送给B</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">接收方：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    1.B接收C</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    2.B用自己的KdB解密，得到明文M&#x3D;D(C,KdB)</span></pre></td></tr></table></figure>
+
+<p>安全性分析：保证了数据的秘密性，但是不确保数据的真实性，保密但是不保真</p>
+<p> 2.确保数据的真实性：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">发送方：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    1.A用自己的KdA对M进行解密，得到C&#x3D;D(M,KdA)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    2.A将C发送给B</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">接收方：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    1.B接收C</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    2.B通过PKDB查询A的公开加密密钥KeA</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    3.B使用KeA加密C，得到明文M&#x3D;(C,KeA)</span></pre></td></tr></table></figure></p>
+<p>安全性分析：保证了真实性，但是不确保数据的秘密性，保真但是不保密</p>
+<p> 3.确保秘密性与真实性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">发送方：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    1.A首先用KdA对M解密，得到中间密文S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    2.A查PKDB，得到B的KeB</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    3.用Keb对S进行加密得到C</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">接收方：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    1.B接收C</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    2.B用自己的KdB解密C得到中间密文S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    3.B查PKDB，得到A的KeA</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    4.用KeA对密文S进行加密得到明文M</span></pre></td></tr></table></figure>
+
+<p>安全性分析：保证了真实性与秘密性</p>
+<h2 id="ElGamal">ElGamal<a class="post-anchor" href="#ElGamal"></a></h2><p>建立在离散对数问题的基础上<br>· 随机选择一个大素数p，要求（p-1）具有大素数因子。选择一个模p<br>的本原根a，并且公开a和p作为密码的基础参数</p>
+<p>· 用户随机生成一个正整数d，2≤d≤p-2，作为私钥</p>
+<p>· 用户计算 y=a^d mod p 得出公钥y</p>
+<h3 id="加密">加密<a class="post-anchor" href="#加密"></a></h3><p>将明文M（0≤M≤p-1）加密成密文的过程如下：</p>
+<p>· 随机的选取一个整数k，2≤k≤p-2</p>
+<p>· 计算</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">U &#x3D; y^k mod p    &#x2F;&#x2F;y是公钥</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">C1 &#x3D; a^k mod p</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">C2 &#x3D; UM mod p</span></pre></td></tr></table></figure>
+<p>· 取C=（C1，C2）作为密文</p>
+<h3 id="解密">解密<a class="post-anchor" href="#解密"></a></h3><p>将密文（C1,C2）解密过程如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">V &#x3D; C1^d mod p</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">M &#x3D; C2*(V^-1) mod p</span></pre></td></tr></table></figure>
+<p> 得到明文M</p>
+<h3 id="安全性">安全性<a class="post-anchor" href="#安全性"></a></h3><p>· 安全性建立在GF(p)离散对数的困难性之上</p>
+<p>· 为了安全考量，p应该在150位以上的十进制数，且(p-1)应该有大素数因子</p>
+<p>· d和k都不能太小</p>
+<p>· 安全加密和签名所使用的k都必须是一次性的</p>
+<h2 id="Diffie-Hellman密钥交换">Diffie-Hellman密钥交换<a class="post-anchor" href="#Diffie-Hellman密钥交换"></a></h2><p>· 目的是使两个用户可以安全地交换密钥，以便在后续的通信中使用该密钥进行消息加密</p>
+<p>· 算法有效性建立在离散对数问题求解的困难性上</p>
+<p>· 对素数p的本原根a求幂，实现范围从1到p-1的一个置换</p>
+<h3 id="D-H密钥交换算法">D-H密钥交换算法<a class="post-anchor" href="#D-H密钥交换算法"></a></h3><p>· 存在两个公开的整数：素数q和本原根a</p>
+<p>· 用户A随机选择一个整数 XA&lt;q 并计算 YA=a^(XA) mod q</p>
+<p>· 用户B也独立选择一个随机整数 XB&lt;q 并计算 YB=a^(XB) mod q</p>
+<p>· A和B保持各自的X是私有的，但是对另一方公开Y</p>
+<p>· 用户A计算 K=(YB)^(XA) mod q，并将其作为密钥</p>
+<p>· 用户B计算 K=(YA)^(XB) mod q，并将其作为密钥</p>
+<p>最终两个K的计算结果是相同的，也就完成了密钥的确定过程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">KA &#x3D;(YB)^(XA)mod q</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">   &#x3D;(a^(XB)mod q)^(XA)mod q</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">   &#x3D;(a^(XB))^(XA)mod q</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">KB &#x3D;(YA)^(XB)mod q</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">   &#x3D;(a^(XA)mod q)^(XB)mod q</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">   &#x3D;(a^(XA))^(XB)mod q</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">   &#x3D;(a^(XB))^(XA)mod q &#x3D; KA</span></pre></td></tr></table></figure>
+
+<h2 id="椭圆曲线">椭圆曲线<a class="post-anchor" href="#椭圆曲线"></a></h2><h3 id="椭圆曲线的定义">椭圆曲线的定义<a class="post-anchor" href="#椭圆曲线的定义"></a></h3><h3 id="椭圆曲线的算数">椭圆曲线的算数<a class="post-anchor" href="#椭圆曲线的算数"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">E : Y^2&#x3D; X^3 + AX + B</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">be an elliptic curve and let P1 and P2 be points on E.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">(a) If P1 &#x3D; O, then P1 + P2 &#x3D; P2.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">(b) Otherwise, if P2 &#x3D; O, then P1 + P2 &#x3D; P1.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">(c) Otherwise, write P1 &#x3D; (x1, y1) and P2 &#x3D; (x2, y2).</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">(d) If x1 &#x3D; x2 and y1 &#x3D; −y2, then P1 + P2 &#x3D; O.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">(e) Otherwise, define λ by</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    if P1&#x3D;P2, then λ&#x3D;(y2-y1)&#x2F;(x2-x1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    if P1≠P2, then λ&#x3D;(3*x1^2+A)&#x2F;(2*y1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">then let</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">x3 &#x3D; λ^2 − x1 − x2 and y3 &#x3D; λ(x1 − x3) − y1.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">Then P1 + P2 &#x3D; (x3, y3).</span></pre></td></tr></table></figure>
+
+<h3 id="椭圆曲线困难问题">椭圆曲线困难问题<a class="post-anchor" href="#椭圆曲线困难问题"></a></h3><p>####椭圆曲线离散对数问题ECDLP<br>给出椭圆曲线上的两点P和Q，求解以P为底Q的对数k</p>
+<h4 id="ECDLP求解">ECDLP求解<a class="post-anchor" href="#ECDLP求解"></a></h4><p>大步小步法</p>
+<h3 id="椭圆曲线的安全性">椭圆曲线的安全性<a class="post-anchor" href="#椭圆曲线的安全性"></a></h3><p>椭圆曲线密码的困难性建立在椭圆曲线对数求解问题之上。Pollar rho方法是目前已知最快的椭圆曲线对数求解方法。已知的是，ECC使用的密钥长度比RSA中使用的密钥长度短得多。而且在密钥长度相同时，ECC与RSA执行所需的计算量相差不多。因此，在具有相同安全性的情况下，ECC使用的密钥比RSA更短，计算量也比RSA更少。</p>
+
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.jpg" target="_block" class="bg" style="background-image:url('/images/zhifubao.jpg')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.jpg" target="_block" class="bg" style="background-image:url('/images/weixin.jpg')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2019/12/19/DES/">数据加密标准 DES</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="/http:/ryhenkao.github.io/2019/12/28/%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81/">/http:/ryhenkao.github.io/2019/12/28/%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2019
+            <a href="http://ryhenkao.github.io">Ryhen Kao</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"service_worker\":{\"open\":false}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 
