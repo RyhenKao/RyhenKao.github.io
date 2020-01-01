@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-      RSA - Ryhen&#39;blog |Code|Life|Love
+      MAC与AEAD - Ryhen&#39;blog |Code|Life|Love
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon1.ico" type="image/x-icon" />
@@ -26,7 +26,7 @@
     
     <div id="post-toc" class="animated hiddenToc hide">
       <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA加密算法"><span class="toc-text">RSA加密算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA签名"><span class="toc-text">RSA签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA的安全性"><span class="toc-text">RSA的安全性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对RSA的攻击方式"><span class="toc-text">对RSA的攻击方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA的填充方案"><span class="toc-text">RSA的填充方案</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MAC与AEAD"><span class="toc-text">MAC与AEAD</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#完整性及其对安全性的影响"><span class="toc-text">完整性及其对安全性的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MAC（消息认证码）"><span class="toc-text">MAC（消息认证码）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MAC的定义"><span class="toc-text">MAC的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用的MAC算法"><span class="toc-text">常用的MAC算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HMAC"><span class="toc-text">HMAC</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CBC-MAC"><span class="toc-text">CBC-MAC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AEAD"><span class="toc-text">AEAD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AEAD的定义"><span class="toc-text">AEAD的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AEAD的常用模式"><span class="toc-text">AEAD的常用模式</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div id="fixed-menu-wrap">
@@ -164,7 +164,7 @@
         <article class="post-entry">
     <div class="header">
       
-      <div class="title">RSA</div>
+      <div class="title">MAC与AEAD</div>
       <div class="meta">
         <span class="item">
           <span class="iconfont icon-time-circle"></span>
@@ -202,20 +202,36 @@
       <div>
       </div>
     </div>
-    <h2 id="RSA加密算法">RSA加密算法<a class="post-anchor" href="#RSA加密算法"></a></h2><h2 id="RSA签名">RSA签名<a class="post-anchor" href="#RSA签名"></a></h2><h2 id="RSA的安全性">RSA的安全性<a class="post-anchor" href="#RSA的安全性"></a></h2><p>RSA可能受到如下5种方式的攻击：</p>
-<p>· 穷举攻击：试图穷举所有可能的密钥</p>
-<p>· 数学攻击：试图分解两个素数的乘积</p>
-<p>· 基于硬件故障的攻击：这种方法应用产生签名过程中处理器发生的故障</p>
-<p>· 计时攻击：依赖于解密算法的运行时间</p>
-<p>· 选择密文攻击：利用了RSA算法的性质</p>
-<p>RSA抗穷举攻击的方式是使用大的密钥空间，所以e和d的位数越大越好，但是密钥产生的过程和加/解密过程都包含了复杂的计算，密钥越大，系统的运行速度越慢</p>
-<h3 id="对RSA的攻击方式">对RSA的攻击方式<a class="post-anchor" href="#对RSA的攻击方式"></a></h3><p>· 攻击思路：分解n为两个素因子p,q。这样可以计算出φ(n)=(p-1)(q-1)，从而可以确定d=e^(-1) mod φ(n) </p>
-<p>· 现在已知的，从e和n确定d的算法时间复杂度至少和因子分解问题一样。因此可以将因子分解的性能作为基准来评价RSA的安全性</p>
-<p>· 20世纪90年代一直采用的是二次筛法来进行因子分解。</p>
-<p>· 而新的算法：一般数域筛法，可以对RSA-130进行攻击，能够分解比RSA-129更大的数而且计算代价仅为二次筛法的20%</p>
-<h2 id="RSA的填充方案">RSA的填充方案<a class="post-anchor" href="#RSA的填充方案"></a></h2><p>· 为了防止RSA受到选择密文攻击，RSA公司推荐使用 最优非对称加密填充（OAEP）的方案</p>
-<p>· OAEP算法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1. 明文M被填充padding</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">2. 可选参数集P作为hash函数的输入，输出产生H(P),并用0填充以达到期望长度</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">3. 将M+padding+H(P)放入数据块DB内</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">4. 选择一个随机种子作为hash函数的输入，该hash函数称为掩码生成函数（MGF）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">5. 将输出的哈市值与DB做异或运算，产生掩码DB（maskedDB）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">6. 掩码DB作为MGF的输入，产生一个hash值，该hash值与随机种子进行异或，产生掩码种子</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">7. 掩码种子和掩码DB连接起来构成消息EM，完成消息的填充</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">8. 最后直接用RSA对EM进行加密即可</span></pre></td></tr></table></figure>
+    <h1 id="MAC与AEAD">MAC与AEAD<a class="post-anchor" href="#MAC与AEAD"></a></h1><h2 id="完整性及其对安全性的影响">完整性及其对安全性的影响<a class="post-anchor" href="#完整性及其对安全性的影响"></a></h2><p>· 完整性是指消息的接收者应该能够验证在传送的过程中消息没有被修改；攻击者不可能用假消息代替合法消息</p>
+<p>· 对安全性的影响：缺少完整性保护的系统会受到 内容修改 、 顺序修改 和 计时修改 的攻击</p>
+<p>· 内容修改：对消息内容进行修改，包括插入、删除、转换和修改</p>
+<p>· 顺序修改： 对通信双方的消息顺序进行修改，包括插入、删除、重新排序</p>
+<p>· 计时修改： 对消息的重播和延时</p>
+<h2 id="MAC（消息认证码）">MAC（消息认证码）<a class="post-anchor" href="#MAC（消息认证码）"></a></h2><h3 id="MAC的定义">MAC的定义<a class="post-anchor" href="#MAC的定义"></a></h3><p>· MAC利用密钥来生成固定长度的短数据块，并将该数据块附加在消息之后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">MAC &#x3D; C（K，M）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;其中M为明文消息，C为MAC函数，K为共享密钥</span></pre></td></tr></table></figure>
+
+<p>· 将消息和MAC一起发送给消息接收方。接收方对消息使用相同的密钥K进行相同的运算得出MAC，并且将计算出的MAC与消息附加的MAC进行比较。</p>
+<p>· 一般来说，MAC函数与加密类似，但是MAC算法要求不可逆，而加密算法必须是可逆的</p>
+<h3 id="常用的MAC算法">常用的MAC算法<a class="post-anchor" href="#常用的MAC算法"></a></h3><h4 id="HMAC">HMAC<a class="post-anchor" href="#HMAC"></a></h4><p>· HAMAC是基于hash算法的消息认证码</p>
+<p>· HMAC的算法描述如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">HMAC(K,M) &#x3D; H[(K&#39;⊕ opad) || H[(K&#39;⊕ipad)||M]]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;在K左侧填充0使其达到分组长度，记为K’</span></pre></td></tr></table></figure>
+
+<p>· HMAC流程如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1. 在K左边填充0，得到b位的K’</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">2. K&#39;与ipad执行异或运算得到长度为b位的分组Si</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">3. 将M附于Si之后</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">4. 将H作用于第3步的结果上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">5. 将K&#39;于opad执行异或操作产生长度为b位的分组S0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">6. 将第4步得到的Hash码依附于S0之后</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">7. 将H作用域第6步的结果，输出最终的结果为所需要的MAC值</span></pre></td></tr></table></figure>
+
+<h3 id="CBC-MAC">CBC-MAC<a class="post-anchor" href="#CBC-MAC"></a></h3><p>· 基于分组密码AES实现的MAC</p>
+<p>· 加密步骤</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1. 首先将数据按照l比特分组，最后不足分组长度的使用固定的pad补足，得到分组D1D2...Dn</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">2. 将D1与初始向量IV异或之后进行加密得到第一组密文C1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">3. 将D2与上一步骤的结果C1异或之后及逆行加密得到C2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">4. 之后的数据以此类推，得到Cn，最终的Cn就是该消息认证码</span></pre></td></tr></table></figure>
+
+<p>· CBC-MAC的安全性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">每一个密钥都只能被用于固定长度和已知长度的消息</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">如果使用的分组密码算法是安全的，则CBC-MAC对于固定长度的消息是安全的</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">CBC-MAC对于可变长度的消息是不安全的</span></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="AEAD">AEAD<a class="post-anchor" href="#AEAD"></a></h2><h3 id="AEAD的定义">AEAD的定义<a class="post-anchor" href="#AEAD的定义"></a></h3><p>· AEAD是一种同时提供保密性以及完整性（认证）的加密系统。</p>
+<h3 id="AEAD的常用模式">AEAD的常用模式<a class="post-anchor" href="#AEAD的常用模式"></a></h3><p>· 对于消息M有四种同时提供保密性以及完整性的通用方案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1. 先Hash再加密。对于明文M使用Hash函数计算H(M),再将M与H(M)一起加密：E(K,(M,H(M)))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">2. 先认证再加密。使用两个密钥K1，K2。先计算明文M的MAC值T&#x3D;MAC(K1,M),再将MAC值与明文一起加密：E(K2,(M,T))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">3. 先加密再认证。使用两个密钥K1，K2。先对明文M加密得到密文C&#x3D;E(K2,M),再计算密文C的MAC值T&#x3D;MAC(K1,C)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">4. 独立进行加密和认证。</span></pre></td></tr></table></figure>
 
 
 
@@ -243,12 +259,10 @@
   <div class="post-guide">
     <div class="item left">
         
-          <a href="/2020/01/01/MAC%E4%B8%8EAEAD/">MAC与AEAD</a>
-        
     </div>
     <div class="item right">
         
-          <a href="/2020/01/01/AES/">AES</a>
+          <a href="/2020/01/01/RSA/">RSA</a>
         
     </div>
   </div>
@@ -260,7 +274,7 @@
       本文作者：<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>
     </div>
     <div class="link">
-      永久链接：<a href="/http:/ryhenkao.github.io/2020/01/01/RSA/">/http:/ryhenkao.github.io/2020/01/01/RSA/</a>
+      永久链接：<a href="/http:/ryhenkao.github.io/2020/01/01/MAC%E4%B8%8EAEAD/">/http:/ryhenkao.github.io/2020/01/01/MAC%E4%B8%8EAEAD/</a>
     </div>
     <div class="declare">
       版权声明：本文首发于<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>的博客，转载请注明出处！
