@@ -16,13 +16,18 @@
     <meta name="description" content="" />
     
     <title>
-      归档2020 - Ryhen&#39;blog |Code|Life|Love
+      RSA - Ryhen&#39;blog |Code|Life|Love
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon1.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/style/style.css">
   </head>
   <body>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA加密算法"><span class="toc-text">RSA加密算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA签名"><span class="toc-text">RSA签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA的安全性"><span class="toc-text">RSA的安全性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对RSA的攻击方式"><span class="toc-text">对RSA的攻击方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA的填充方案"><span class="toc-text">RSA的填充方案</span></a></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -57,7 +62,7 @@
           首页
         </a>
         
-        <a href="/archives" class="current">
+        <a href="/archives" class="">
           归档
         </a>
         
@@ -111,7 +116,7 @@
             首页
           </a>
           
-          <a href="/archives" class="current">
+          <a href="/archives" class="">
             归档
           </a>
           
@@ -156,52 +161,115 @@
     </div>
     <div id="container">
       <div class="main animated bounceInRight delay-0.7s">
-        <div id="archives">
-    
-        <div class="title">
-            归档 
-             - 2020
-        </div>
-    
-
-
-
-
-    
-    
-    <section class="wrap">
-        <div class="meta">
-            <a href="/archives/2020" >
-                2020
-            </a>
-        </div>
-        <div class="year">
-            
-            <article class="item">
-            <a href="/2020/01/01/RSA/" title="RSA">
-                <span>2020/01/01</span>
-                <span>RSA</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/01/01/AES/" title="AES">
-                <span>2020/01/01</span>
-                <span>AES</span>
-            </a>
-            </article>
-            
-    
-        </div>
-    </section>
+        <article class="post-entry">
+    <div class="header">
       
-<div class="paginator">
-    <span class="page-number current">1</span>
-</div>
-</div>
+      <div class="title">RSA</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/01/01</span>
+        </span>
 
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Study">Study</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/密码学">密码学</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <h2 id="RSA加密算法">RSA加密算法<a class="post-anchor" href="#RSA加密算法"></a></h2><h2 id="RSA签名">RSA签名<a class="post-anchor" href="#RSA签名"></a></h2><h2 id="RSA的安全性">RSA的安全性<a class="post-anchor" href="#RSA的安全性"></a></h2><p>RSA可能受到如下5种方式的攻击：</p>
+<p>· 穷举攻击：试图穷举所有可能的密钥</p>
+<p>· 数学攻击：试图分解两个素数的乘积</p>
+<p>· 基于硬件故障的攻击：这种方法应用产生签名过程中处理器发生的故障</p>
+<p>· 计时攻击：依赖于解密算法的运行时间</p>
+<p>· 选择密文攻击：利用了RSA算法的性质</p>
+<p>RSA抗穷举攻击的方式是使用大的密钥空间，所以e和d的位数越大越好，但是密钥产生的过程和加/解密过程都包含了复杂的计算，密钥越大，系统的运行速度越慢</p>
+<h3 id="对RSA的攻击方式">对RSA的攻击方式<a class="post-anchor" href="#对RSA的攻击方式"></a></h3><p>· 攻击思路：分解n为两个素因子p,q。这样可以计算出φ(n)=(p-1)(q-1)，从而可以确定d=e^(-1) mod φ(n) </p>
+<p>· 现在已知的，从e和n确定d的算法时间复杂度至少和因子分解问题一样。因此可以将因子分解的性能作为基准来评价RSA的安全性</p>
+<p>· 20世纪90年代一直采用的是二次筛法来进行因子分解。</p>
+<p>· 而新的算法：一般数域筛法，可以对RSA-130进行攻击，能够分解比RSA-129更大的数而且计算代价仅为二次筛法的20%</p>
+<h2 id="RSA的填充方案">RSA的填充方案<a class="post-anchor" href="#RSA的填充方案"></a></h2><p>· 为了防止RSA受到选择密文攻击，RSA公司推荐使用 最优非对称加密填充（OAEP）的方案</p>
+<p>· OAEP算法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1. 明文M被填充padding</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">2. 可选参数集P作为hash函数的输入，输出产生H(P),并用0填充以达到期望长度</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">3. 将M+padding+H(P)放入数据块DB内</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">4. 选择一个随机种子作为hash函数的输入，该hash函数称为掩码生成函数（MGF）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">5. 将输出的哈市值与DB做异或运算，产生掩码DB（maskedDB）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">6. 掩码DB作为MGF的输入，产生一个hash值，该hash值与随机种子进行异或，产生掩码种子</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">7. 掩码种子和掩码DB连接起来构成消息EM，完成消息的填充</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">8. 最后直接用RSA对EM进行加密即可</span></pre></td></tr></table></figure>
+
+
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.jpg" target="_block" class="bg" style="background-image:url('/images/zhifubao.jpg')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.jpg" target="_block" class="bg" style="background-image:url('/images/weixin.jpg')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020/01/01/AES/">AES</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="/http:/ryhenkao.github.io/2020/01/01/RSA/">/http:/ryhenkao.github.io/2020/01/01/RSA/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
         <footer>
           <div class="copyright">
             ©2020
