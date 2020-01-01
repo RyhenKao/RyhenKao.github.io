@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-      MAC与AEAD - Ryhen&#39;blog |Code|Life|Love
+      哈希函数 - Ryhen&#39;blog |Code|Life|Love
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon1.ico" type="image/x-icon" />
@@ -26,7 +26,7 @@
     
     <div id="post-toc" class="animated hiddenToc hide">
       <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MAC与AEAD"><span class="toc-text">MAC与AEAD</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#完整性及其对安全性的影响"><span class="toc-text">完整性及其对安全性的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MAC（消息认证码）"><span class="toc-text">MAC（消息认证码）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MAC的定义"><span class="toc-text">MAC的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用的MAC算法"><span class="toc-text">常用的MAC算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HMAC"><span class="toc-text">HMAC</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CBC-MAC"><span class="toc-text">CBC-MAC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AEAD"><span class="toc-text">AEAD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AEAD的定义"><span class="toc-text">AEAD的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AEAD的常用模式"><span class="toc-text">AEAD的常用模式</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#哈希函数"><span class="toc-text">哈希函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hash函数的概念"><span class="toc-text">Hash函数的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash函数的作用"><span class="toc-text">Hash函数的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HASH函数的安全性"><span class="toc-text">HASH函数的安全性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#比特安全性"><span class="toc-text">比特安全性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HASH函数构造"><span class="toc-text">HASH函数构造</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Merkle-Damgard（MD）结构"><span class="toc-text">Merkle-Damgard（MD）结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HASH函数应用"><span class="toc-text">HASH函数应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MD5"><span class="toc-text">MD5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SHA-1"><span class="toc-text">SHA-1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SHA-2"><span class="toc-text">SHA-2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SM3"><span class="toc-text">SM3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#One-Time-Password-OTP"><span class="toc-text">One-Time Password(OTP)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bitcoin-Block-Chain"><span class="toc-text">Bitcoin Block Chain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Server-side-Password-Protection"><span class="toc-text">Server-side Password Protection</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div id="fixed-menu-wrap">
@@ -164,7 +164,7 @@
         <article class="post-entry">
     <div class="header">
       
-      <div class="title">MAC与AEAD</div>
+      <div class="title">哈希函数</div>
       <div class="meta">
         <span class="item">
           <span class="iconfont icon-time-circle"></span>
@@ -202,38 +202,21 @@
       <div>
       </div>
     </div>
-    <h1 id="MAC与AEAD">MAC与AEAD<a class="post-anchor" href="#MAC与AEAD"></a></h1><h2 id="完整性及其对安全性的影响">完整性及其对安全性的影响<a class="post-anchor" href="#完整性及其对安全性的影响"></a></h2><p>· 完整性是指消息的接收者应该能够验证在传送的过程中消息没有被修改；攻击者不可能用假消息代替合法消息</p>
-<p>· 对安全性的影响：缺少完整性保护的系统会受到 内容修改 、 顺序修改 和 计时修改 的攻击</p>
-<p>· 内容修改：对消息内容进行修改，包括插入、删除、转换和修改</p>
-<p>· 顺序修改： 对通信双方的消息顺序进行修改，包括插入、删除、重新排序</p>
-<p>· 计时修改： 对消息的重播和延时</p>
-<h2 id="MAC（消息认证码）">MAC（消息认证码）<a class="post-anchor" href="#MAC（消息认证码）"></a></h2><h3 id="MAC的定义">MAC的定义<a class="post-anchor" href="#MAC的定义"></a></h3><p>· MAC利用密钥来生成固定长度的短数据块，并将该数据块附加在消息之后</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">MAC &#x3D; C（K，M）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;其中M为明文消息，C为MAC函数，K为共享密钥</span></pre></td></tr></table></figure>
+    <h1 id="哈希函数">哈希函数<a class="post-anchor" href="#哈希函数"></a></h1><h2 id="Hash函数的概念">Hash函数的概念<a class="post-anchor" href="#Hash函数的概念"></a></h2><h3 id="Hash函数的作用">Hash函数的作用<a class="post-anchor" href="#Hash函数的作用"></a></h3><p>· 具有极强的错误检测能力<br>· 用Hash码作为消息认证码（MAC）<br>· 用Hash函数辅助数字签名<br>· 辅助随机数的产生<br>· 保护口令秘密性<br>· Hash函数与加密函数不同的是它不使用密钥<br>· 由可变长度输入生成定长输出<br>· 对Hash函数的要求</p>
+<pre><code>1. H可应用于任意大小的数据块
 
-<p>· 将消息和MAC一起发送给消息接收方。接收方对消息使用相同的密钥K进行相同的运算得出MAC，并且将计算出的MAC与消息附加的MAC进行比较。</p>
-<p>· 一般来说，MAC函数与加密类似，但是MAC算法要求不可逆，而加密算法必须是可逆的</p>
-<h3 id="常用的MAC算法">常用的MAC算法<a class="post-anchor" href="#常用的MAC算法"></a></h3><h4 id="HMAC">HMAC<a class="post-anchor" href="#HMAC"></a></h4><p>· HAMAC是基于hash算法的消息认证码</p>
-<p>· HMAC的算法描述如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">HMAC(K,M) &#x3D; H[(K&#39;⊕ opad) || H[(K&#39;⊕ipad)||M]]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;在K左侧填充0使其达到分组长度，记为K’</span></pre></td></tr></table></figure>
+2. H产生定长的输出
 
-<p>· HMAC流程如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1. 在K左边填充0，得到b位的K’</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">2. K&#39;与ipad执行异或运算得到长度为b位的分组Si</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">3. 将M附于Si之后</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">4. 将H作用于第3步的结果上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">5. 将K&#39;于opad执行异或操作产生长度为b位的分组S0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">6. 将第4步得到的Hash码依附于S0之后</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">7. 将H作用域第6步的结果，输出最终的结果为所需要的MAC值</span></pre></td></tr></table></figure>
+3. 对于任意给定的x，计算H(x)容易
 
-<h3 id="CBC-MAC">CBC-MAC<a class="post-anchor" href="#CBC-MAC"></a></h3><p>· 基于分组密码AES实现的MAC</p>
-<p>· 加密步骤</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1. 首先将数据按照l比特分组，最后不足分组长度的使用固定的pad补足，得到分组D1D2...Dn</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">2. 将D1与初始向量IV异或之后进行加密得到第一组密文C1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">3. 将D2与上一步骤的结果C1异或之后及逆行加密得到C2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">4. 之后的数据以此类推，得到Cn，最终的Cn就是该消息认证码</span></pre></td></tr></table></figure>
+4. 对于给定hash值H(x)=b，在计算原始值x时不可行——单向性
 
-<p>· CBC-MAC的安全性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">每一个密钥都只能被用于固定长度和已知长度的消息</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">如果使用的分组密码算法是安全的，则CBC-MAC对于固定长度的消息是安全的</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">CBC-MAC对于可变长度的消息是不安全的</span></pre></td></tr></table></figure>
+5. 对于给定输入x，找到一个值y满足y≠x且H(x)=H(y)在计算上不可行——抗弱碰撞性
 
-
-
-
-<h2 id="AEAD">AEAD<a class="post-anchor" href="#AEAD"></a></h2><h3 id="AEAD的定义">AEAD的定义<a class="post-anchor" href="#AEAD的定义"></a></h3><p>· AEAD是一种同时提供保密性以及完整性（认证）的加密系统。</p>
-<h3 id="AEAD的常用模式">AEAD的常用模式<a class="post-anchor" href="#AEAD的常用模式"></a></h3><p>· 对于消息M有四种同时提供保密性以及完整性的通用方案</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1. 先Hash再加密。对于明文M使用Hash函数计算H(M),再将M与H(M)一起加密：E(K,(M,H(M)))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">2. 先认证再加密。使用两个密钥K1，K2。先计算明文M的MAC值T&#x3D;MAC(K1,M),再将MAC值与明文一起加密：E(K2,(M,T))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">3. 先加密再认证。使用两个密钥K1，K2。先对明文M加密得到密文C&#x3D;E(K2,M),再计算密文C的MAC值T&#x3D;MAC(K1,C)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">4. 独立进行加密和认证。</span></pre></td></tr></table></figure>
-
-
+6. 找到任何满足H(x)=H(y)的偶对（x，y）在计算上不可行——抗强碰撞性</code></pre><h3 id="HASH函数的安全性">HASH函数的安全性<a class="post-anchor" href="#HASH函数的安全性"></a></h3><p>· 抗原像攻击：对任何给定的hash函数值H(x)=h，已知h找到x是不可行的<br>· 抗第二原像攻击：对于任何给定数据x，找到一个值y满足y≠x且H(x)=H(y)在计算上不可行<br>· 抗碰撞：找到任何满足H(x)=H(y)的偶对(x,y)在计算上是不可行的</p>
+<h3 id="比特安全性">比特安全性<a class="post-anchor" href="#比特安全性"></a></h3><p>· 生日悖论：一个教室中，最少应有多少学生才使至少有两个人具有相同生日的开率不小于1/2？<br>· 假定hash函数H有2^m种可能的输出（即输出摘要值为m比特），H作用域k个随即输入，那么k为多少时至少有一个重复出现（能找到输入x和y，有H(x)=H(y)）,的概率大于0.5<br>· 结论：k=2^(m/2)<br>· 对输出为n比特的hash函数，弱碰撞攻击穷举需要的复杂度为O(2^n)<br>· 对输出为n比特的hash函数，强碰撞攻击穷举只需要复杂度为O(2^(n/2))<br>· MD5 的比特安全性为 128/2=64 比特<br>· SHA-1的比特安全性是 160/2=80 比特<br>· SHA-256的比特安全性是 256/2=128 比特</p>
+<h2 id="HASH函数构造">HASH函数构造<a class="post-anchor" href="#HASH函数构造"></a></h2><h3 id="Merkle-Damgard（MD）结构">Merkle-Damgard（MD）结构<a class="post-anchor" href="#Merkle-Damgard（MD）结构"></a></h3><p>· </p>
+<h2 id="HASH函数应用">HASH函数应用<a class="post-anchor" href="#HASH函数应用"></a></h2><h3 id="MD5">MD5<a class="post-anchor" href="#MD5"></a></h3><h3 id="SHA-1">SHA-1<a class="post-anchor" href="#SHA-1"></a></h3><h3 id="SHA-2">SHA-2<a class="post-anchor" href="#SHA-2"></a></h3><h3 id="SM3">SM3<a class="post-anchor" href="#SM3"></a></h3><h3 id="One-Time-Password-OTP">One-Time Password(OTP)<a class="post-anchor" href="#One-Time-Password-OTP"></a></h3><h3 id="Bitcoin-Block-Chain">Bitcoin Block Chain<a class="post-anchor" href="#Bitcoin-Block-Chain"></a></h3><h3 id="Server-side-Password-Protection">Server-side Password Protection<a class="post-anchor" href="#Server-side-Password-Protection"></a></h3>
 
   
     <div class="post-reward">
@@ -259,12 +242,10 @@
   <div class="post-guide">
     <div class="item left">
         
-          <a href="/2020/01/01/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/">哈希函数</a>
-        
     </div>
     <div class="item right">
         
-          <a href="/2020/01/01/RSA/">RSA</a>
+          <a href="/2020/01/01/MAC%E4%B8%8EAEAD/">MAC与AEAD</a>
         
     </div>
   </div>
@@ -276,7 +257,7 @@
       本文作者：<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>
     </div>
     <div class="link">
-      永久链接：<a href="/http:/ryhenkao.github.io/2020/01/01/MAC%E4%B8%8EAEAD/">/http:/ryhenkao.github.io/2020/01/01/MAC%E4%B8%8EAEAD/</a>
+      永久链接：<a href="/http:/ryhenkao.github.io/2020/01/01/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/">/http:/ryhenkao.github.io/2020/01/01/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/</a>
     </div>
     <div class="declare">
       版权声明：本文首发于<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>的博客，转载请注明出处！
