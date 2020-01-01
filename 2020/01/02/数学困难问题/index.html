@@ -16,13 +16,18 @@
     <meta name="description" content="" />
     
     <title>
-      分类 - Ryhen&#39;blog |Code|Life|Love
+      数学困难问题 - Ryhen&#39;blog |Code|Life|Love
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon1.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/style/style.css">
   </head>
   <body>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题分类"><span class="toc-text">问题分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#离散对数问题-DLP"><span class="toc-text">离散对数问题 DLP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#椭圆曲线离散对数问题-DLP"><span class="toc-text">椭圆曲线离散对数问题 DLP</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#整数分解问题-IFP"><span class="toc-text">整数分解问题 IFP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DH（Diffie-Hellman）问题"><span class="toc-text">DH（Diffie-Hellman）问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ECDH问题"><span class="toc-text">ECDH问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RSA问题"><span class="toc-text">RSA问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#平滑数"><span class="toc-text">平滑数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#平滑数的概念"><span class="toc-text">平滑数的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#平滑数的作用"><span class="toc-text">平滑数的作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pohlig-Hellman-算法"><span class="toc-text">Pohlig-Hellman 算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#大步小步法"><span class="toc-text">大步小步法</span></a></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -61,7 +66,7 @@
           归档
         </a>
         
-        <a href="/categories" class="current">
+        <a href="/categories" class="">
           分类
         </a>
         
@@ -115,7 +120,7 @@
             归档
           </a>
           
-          <a href="/categories" class="current">
+          <a href="/categories" class="">
             分类
           </a>
           
@@ -156,184 +161,104 @@
     </div>
     <div id="container">
       <div class="main animated bounceInRight delay-0.7s">
-        <div id="categories">
-  <div class="title">
-    分类
-  </div>
-
-  
-  <div class="list">
-     
-    <li class="Study active">
-      <span>Study<sup>22</sup></span>
-    </li>
-     
-  </div>
-  
-  <div class="post-wrap">
-     
-    <div class="post Study active">
+        <article class="post-entry">
+    <div class="header">
       
-      <li>
-        <a href="/2019/12/11/LeetCode-101/" title="LeetCode-101 对称二叉树">
-          <span>2019/12/11</span>
-          <span>LeetCode-101 对称二叉树</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2019/12/11/LeetCode-104/" title="LeetCode-104 二叉树的最大深度">
-          <span>2019/12/11</span>
-          <span>LeetCode-104 二叉树的最大深度</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2019/12/11/LeetCode-108/" title="LeetCode-108 有序数组转化为二叉搜索树">
-          <span>2019/12/11</span>
-          <span>LeetCode-108 有序数组转化为二叉搜索树</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2019/12/11/LeetCode-110/" title="LeetCode-110 平衡二叉树">
-          <span>2019/12/11</span>
-          <span>LeetCode-110 平衡二叉树</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2019/12/11/LeetCode-111/" title="LeetCode-111 二叉树的最小深度">
-          <span>2019/12/11</span>
-          <span>LeetCode-111 二叉树的最小深度</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2019/12/11/LeetCode-112/" title="LeetCode-112 路径总和">
-          <span>2019/12/11</span>
-          <span>LeetCode-112 路径总和</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2019/12/11/LeetCode-118/" title="LeetCode-118 杨辉三角">
-          <span>2019/12/11</span>
-          <span>LeetCode-118 杨辉三角</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2019/12/11/LeetCode-119/" title="LeetCode-119 杨辉三角II">
-          <span>2019/12/11</span>
-          <span>LeetCode-119 杨辉三角II</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2019/12/11/LeetCode-121/" title="LeetCode-121 买卖股票的最佳时机">
-          <span>2019/12/11</span>
-          <span>LeetCode-121 买卖股票的最佳时机</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2019/12/11/LeetCode-122/" title="LeetCode-122 买卖股票的最佳时机II">
-          <span>2019/12/11</span>
-          <span>LeetCode-122 买卖股票的最佳时机II</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2019/12/19/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%A4%8D%E4%B9%A0%E9%87%8D%E7%82%B9/" title="应用密码学复习重点">
-          <span>2019/12/19</span>
-          <span>应用密码学复习重点</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2019/12/19/DES/" title="数据加密标准 DES">
-          <span>2019/12/19</span>
-          <span>数据加密标准 DES</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2019/12/28/%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81/" title="公钥密码">
-          <span>2019/12/28</span>
-          <span>公钥密码</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2020/01/01/AES/" title="AES">
-          <span>2020/01/01</span>
-          <span>AES</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2020/01/01/RSA/" title="RSA">
-          <span>2020/01/01</span>
-          <span>RSA</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2020/01/01/MAC%E4%B8%8EAEAD/" title="MAC与AEAD">
-          <span>2020/01/01</span>
-          <span>MAC与AEAD</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2020/01/01/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/" title="哈希函数">
-          <span>2020/01/01</span>
-          <span>哈希函数</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2020/01/01/%E5%BA%8F%E5%88%97%E5%AF%86%E7%A0%81/" title="序列密码">
-          <span>2020/01/01</span>
-          <span>序列密码</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2020/01/01/%E7%A1%AC%E4%BB%B6%E5%AE%89%E5%85%A8/" title="硬件安全">
-          <span>2020/01/01</span>
-          <span>硬件安全</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2020/01/01/%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E4%B8%8EPKI/" title="数字证书与PKI">
-          <span>2020/01/01</span>
-          <span>数字证书与PKI</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2020/01/01/%E5%AF%86%E6%96%87%E8%AE%A1%E7%AE%97/" title="密文计算">
-          <span>2020/01/01</span>
-          <span>密文计算</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/2020/01/02/%E6%95%B0%E5%AD%A6%E5%9B%B0%E9%9A%BE%E9%97%AE%E9%A2%98/" title="数学困难问题">
+      <div class="title">数学困难问题</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
           <span>2020/01/02</span>
-          <span>数学困难问题</span>
-        </a>
-      </li>
-      
-    </div>
-     
-  </div>
-   
-</div>
+        </span>
 
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Study">Study</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/密码学">密码学</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <h2 id="问题分类">问题分类<a class="post-anchor" href="#问题分类"></a></h2><p>· 离散对数问题</p>
+<p>· 整数分解问题</p>
+<h3 id="离散对数问题-DLP">离散对数问题 DLP<a class="post-anchor" href="#离散对数问题-DLP"></a></h3><h4 id="椭圆曲线离散对数问题-DLP">椭圆曲线离散对数问题 DLP<a class="post-anchor" href="#椭圆曲线离散对数问题-DLP"></a></h4><h3 id="整数分解问题-IFP">整数分解问题 IFP<a class="post-anchor" href="#整数分解问题-IFP"></a></h3><h4 id="DH（Diffie-Hellman）问题">DH（Diffie-Hellman）问题<a class="post-anchor" href="#DH（Diffie-Hellman）问题"></a></h4><h4 id="ECDH问题">ECDH问题<a class="post-anchor" href="#ECDH问题"></a></h4><h4 id="RSA问题">RSA问题<a class="post-anchor" href="#RSA问题"></a></h4><h2 id="平滑数">平滑数<a class="post-anchor" href="#平滑数"></a></h2><h3 id="平滑数的概念">平滑数的概念<a class="post-anchor" href="#平滑数的概念"></a></h3><p>光滑数是指可以因数分解为小素数的乘积的正整数</p>
+<h3 id="平滑数的作用">平滑数的作用<a class="post-anchor" href="#平滑数的作用"></a></h3><p>经常用于密码分析，平滑数是目前已知最快的因数分解算法</p>
+<h2 id="Pohlig-Hellman-算法">Pohlig-Hellman 算法<a class="post-anchor" href="#Pohlig-Hellman-算法"></a></h2><h2 id="大步小步法">大步小步法<a class="post-anchor" href="#大步小步法"></a></h2>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.jpg" target="_block" class="bg" style="background-image:url('/images/zhifubao.jpg')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.jpg" target="_block" class="bg" style="background-image:url('/images/weixin.jpg')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020/01/01/%E5%AF%86%E6%96%87%E8%AE%A1%E7%AE%97/">密文计算</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="/http:/ryhenkao.github.io/2020/01/02/%E6%95%B0%E5%AD%A6%E5%9B%B0%E9%9A%BE%E9%97%AE%E9%A2%98/">/http:/ryhenkao.github.io/2020/01/02/%E6%95%B0%E5%AD%A6%E5%9B%B0%E9%9A%BE%E9%97%AE%E9%A2%98/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
         <footer>
           <div class="copyright">
             ©2020
