@@ -16,18 +16,13 @@
     <meta name="description" content="" />
     
     <title>
-      LeetCode-111 二叉树的最小深度 - Ryhen&#39;blog |Code|Life|Love
+      归档2020 - Ryhen&#39;blog |Code|Life|Love
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon1.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/style/style.css">
   </head>
   <body>
-    
-    <div id="post-toc" class="animated hiddenToc hide">
-      <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#思路："><span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码："><span class="toc-text">代码：</span></a></li></ol>
-    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -62,7 +57,7 @@
           首页
         </a>
         
-        <a href="/archives" class="">
+        <a href="/archives" class="current">
           归档
         </a>
         
@@ -116,7 +111,7 @@
             首页
           </a>
           
-          <a href="/archives" class="">
+          <a href="/archives" class="current">
             归档
           </a>
           
@@ -161,104 +156,43 @@
     </div>
     <div id="container">
       <div class="main animated bounceInRight delay-0.7s">
-        <article class="post-entry">
-    <div class="header">
-      
-      <div class="title">LeetCode-111 二叉树的最小深度</div>
-      <div class="meta">
-        <span class="item">
-          <span class="iconfont icon-time-circle"></span>
-          <span>2019/12/11</span>
-        </span>
-
-        
-
-         
-        <span class="item">
-          <span class="iconfont icon-folder"></span>
-          <span>
-              
-                
-                  <a href="/categories/Study">Study</a>
-                
-              
-          </span>
-        </span>
-        
-        
-         
-          <span class="item">
-            <span class="iconfont icon-tag1"></span>
-            <span>
-                
-                  
-                    <a href="/tags/LeetCode">LeetCode</a>
-                  
-                
-            </span>
-          </span>
-         
-      </div>
-      <div>
-      </div>
-    </div>
-    <p><a href="/2019/12/11/LeetCode-111/pic.png" data-caption="pic1" data-fancybox="images"><img src="/2019/12/11/LeetCode-111/pic.png" alt="pic1"></a></p>
-<h4 id="思路：">思路：<a class="post-anchor" href="#思路："></a></h4><p><em>和之前做过的求二叉树深度的题目一样，只不过这次返回的是根节点到叶子节点之间最小的距离，同样使用DFS的思想找到叶子节点，并且同时计算距离即可。</em></p>
-<h4 id="代码：">代码：<a class="post-anchor" href="#代码："></a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"># Definition for a binary tree node.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"># class TreeNode:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">#     def __init__(self, x):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">#         self.val &#x3D; x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">#         self.left &#x3D; None</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">#         self.right &#x3D; None</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">class Solution:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    def minDepth(self, root: TreeNode) -&gt; int:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        if root:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            if root.left and root.right:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">                return 1+min(self.minDepth(root.left),self.minDepth(root.right))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">#节点存在左右子树的时候，返回较小的深度值</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">            elif root.left:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">                return 1+self.minDepth(root.left)  #节点只有一棵子树时，该子树的最小深度就是二叉树的最小深度</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">            elif root.right:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">                return 1+self.minDepth(root.right)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">            else:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">                return 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        else:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">            return 0</span></pre></td></tr></table></figure>
-
-  
-    <div class="post-reward">
-    <div id="reward-button">打赏</div>
-      <div id="qr">
-        <div class="wrap">
-            
-            <div class="bg-wrap">
-              <a href="/images/zhifubao.jpg" target="_block" class="bg" style="background-image:url('/images/zhifubao.jpg')"></a>
-              支付宝
-            </div>
-            
-            
-            <div class="bg-wrap">
-                <a href="/images/weixin.jpg" target="_block" class="bg" style="background-image:url('/images/weixin.jpg')"></a>
-              微信
-            </div>
-            
+        <div id="archives">
+    
+        <div class="title">
+            归档 
+             - 2020
         </div>
-      </div>
-    </div>
-  
-  <div class="post-guide">
-    <div class="item left">
-        
-          <a href="/2019/12/11/LeetCode-112/">LeetCode-112 路径总和</a>
-        
-    </div>
-    <div class="item right">
-        
-          <a href="/2019/12/11/LeetCode-110/">LeetCode-110 平衡二叉树</a>
-        
-    </div>
-  </div>
+    
 
-  
 
-  <div class="post-copyright">
-    <div class="auth">
-      本文作者：<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>
-    </div>
-    <div class="link">
-      永久链接：<a href="/http:/ryhenkao.github.io/2019/12/11/LeetCode-111/">/http:/ryhenkao.github.io/2019/12/11/LeetCode-111/</a>
-    </div>
-    <div class="declare">
-      版权声明：本文首发于<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>的博客，转载请注明出处！
-    </div>
-  </div>
 
-  <div id="comment"></div>
 
-  
-  
-</article>
+    
+    
+    <section class="wrap">
+        <div class="meta">
+            <a href="/archives/2020" >
+                2020
+            </a>
+        </div>
+        <div class="year">
+            
+            <article class="item">
+            <a href="/2020/01/01/AES/" title="AES">
+                <span>2020/01/01</span>
+                <span>AES</span>
+            </a>
+            </article>
+            
+    
+        </div>
+    </section>
+      
+<div class="paginator">
+    <span class="page-number current">1</span>
+</div>
+</div>
+
         <footer>
           <div class="copyright">
             ©2020

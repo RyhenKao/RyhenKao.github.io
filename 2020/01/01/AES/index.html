@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-      LeetCode-110 平衡二叉树 - Ryhen&#39;blog |Code|Life|Love
+      AES - Ryhen&#39;blog |Code|Life|Love
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon1.ico" type="image/x-icon" />
@@ -26,7 +26,7 @@
     
     <div id="post-toc" class="animated hiddenToc hide">
       <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#思路："><span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码："><span class="toc-text">代码：</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AES概况"><span class="toc-text">AES概况</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设计要求"><span class="toc-text">设计要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AES的子表示与运算"><span class="toc-text">AES的子表示与运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态"><span class="toc-text">状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#轮函数"><span class="toc-text">轮函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#标准轮函数"><span class="toc-text">标准轮函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#非标准轮函数"><span class="toc-text">非标准轮函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S盒变换"><span class="toc-text">S盒变换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#S盒操作"><span class="toc-text">S盒操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#行移位"><span class="toc-text">行移位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#列混合"><span class="toc-text">列混合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#轮密钥加"><span class="toc-text">轮密钥加</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#轮密钥生成"><span class="toc-text">轮密钥生成</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#密钥扩展"><span class="toc-text">密钥扩展</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#轮密钥选择"><span class="toc-text">轮密钥选择</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AES的解密"><span class="toc-text">AES的解密</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AES的基本逆变换"><span class="toc-text">AES的基本逆变换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AES的实现"><span class="toc-text">AES的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AES的安全性"><span class="toc-text">AES的安全性</span></a></li></ol></li></ol>
     </div>
     
     <div id="fixed-menu-wrap">
@@ -164,11 +164,11 @@
         <article class="post-entry">
     <div class="header">
       
-      <div class="title">LeetCode-110 平衡二叉树</div>
+      <div class="title">AES</div>
       <div class="meta">
         <span class="item">
           <span class="iconfont icon-time-circle"></span>
-          <span>2019/12/11</span>
+          <span>2020/01/01</span>
         </span>
 
         
@@ -192,7 +192,7 @@
             <span>
                 
                   
-                    <a href="/tags/LeetCode">LeetCode</a>
+                    <a href="/tags/密码学">密码学</a>
                   
                 
             </span>
@@ -202,10 +202,92 @@
       <div>
       </div>
     </div>
-    <p><a href="/2019/12/11/LeetCode-110/pic.png" data-caption="题目1" data-fancybox="images"><img src="/2019/12/11/LeetCode-110/pic.png" alt="题目1"></a><br><a href="/2019/12/11/LeetCode-110/pic2.png" data-caption="题目2" data-fancybox="images"><img src="/2019/12/11/LeetCode-110/pic2.png" alt="题目2"></a></p>
-<h4 id="思路：">思路：<a class="post-anchor" href="#思路："></a></h4><p><em>根据平衡二叉树的定义：每一个节点的左右两个子树高度差的绝对值不超过1，我们可以首先想到的是需要一个计算二叉树高度的函数，这应该是一个我们非常熟悉的函数，通过DFS的方式计算二叉树高度。由于“每一个节点”都满足定义，于是我们可以很快想到采用——递归，对每一个节点都采用相同的方法进行判断，判断是否每个节点的左右子树高度差绝对值小于等于1</em></p>
-<h4 id="代码：">代码：<a class="post-anchor" href="#代码："></a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"># Definition for a binary tree node.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"># class TreeNode:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">#     def __init__(self, x):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">#         self.val &#x3D; x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">#         self.left &#x3D; None</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">#         self.right &#x3D; None</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">class Solution:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    def isBalanced(self, root: TreeNode) -&gt; bool:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        def height(root:TreeNode,depth):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            if root&#x3D;&#x3D;None:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">                return depth</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">            elif root.right&#x3D;&#x3D;None and root.left&#x3D;&#x3D;None:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">                return depth+1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">            else:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">                left&#x3D;height(root.left,depth+1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">                right&#x3D;height(root.right,depth+1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">                depth &#x3D; max(left,right)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">            return depth</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        if root&#x3D;&#x3D;None:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">            return True</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        left &#x3D; self.isBalanced(root.left)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        right &#x3D; self.isBalanced(root.right)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        if left and right:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">            flag&#x3D; abs(height(root.left,0)-height(root.right,0))&lt;&#x3D;1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">            return flag</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        return False</span></pre></td></tr></table></figure>
-
+    <h2 id="AES概况">AES概况<a class="post-anchor" href="#AES概况"></a></h2><p>NIST公开征集</p>
+<pre><code>1998~2000年经历三轮审查
+2001年最终选定一个算法并制定其位标准</code></pre><h3 id="设计要求">设计要求<a class="post-anchor" href="#设计要求"></a></h3><p> 安全性：可抵御目前已知攻击</p>
+<p> 实用性：适应各种应用环境</p>
+<p> 扩展性：分组长度和密钥长度可扩展</p>
+<h3 id="特点">特点<a class="post-anchor" href="#特点"></a></h3><p> 分组密码：现在使用明文密文长度为128位，密钥长度可变（128/256等等）</p>
+<p> 面向二进制： 能够加解密任何计算机数据</p>
+<p> 不是对合运算： 加解密使用不同的算法（但是结构基本一样）</p>
+<p> 综合运用多种密码古典密码技术： 置换、代替、异或</p>
+<p> 整体结构：采用SP结构（S盒+P置换），基本轮函数循环迭代</p>
+<h3 id="AES的子表示与运算">AES的子表示与运算<a class="post-anchor" href="#AES的子表示与运算"></a></h3><p> AES的数据处理单位是字节和字</p>
+<pre><code>一个字=4个字节=（4×8bit）32bit 
+一个字可以表示为系数取自GF(2^8)上的次数低于4次的多项式</code></pre><h3 id="状态">状态<a class="post-anchor" href="#状态"></a></h3><p> 加解密状态的中间数据</p>
+<p> 以字节为元素的矩阵或是二维数组</p>
+<p> Nb——明文所含的字数</p>
+<p> Nk——密钥所含的字数</p>
+<p> Nr——迭代轮数</p>
+<h3 id="轮函数">轮函数<a class="post-anchor" href="#轮函数"></a></h3><p>共进行10轮变换</p>
+<p>前9轮成为标准轮函数</p>
+<p>最后一轮非标准轮函数</p>
+<h4 id="标准轮函数">标准轮函数<a class="post-anchor" href="#标准轮函数"></a></h4><p>S盒变换+P置换（行移位变换+列混合变换）+轮密钥加 </p>
+<h4 id="非标准轮函数">非标准轮函数<a class="post-anchor" href="#非标准轮函数"></a></h4><p>S盒变换+行移位变换+轮密钥加</p>
+<h3 id="S盒变换">S盒变换<a class="post-anchor" href="#S盒变换"></a></h3><p>AES的唯一非线性变换</p>
+<p>AES的S盒输入输出都是8位，是非线性置换</p>
+<p>AES使用16个相同的S盒（一个S盒对应一个状态，一个状态对应一个字节）</p>
+<h4 id="S盒操作">S盒操作<a class="post-anchor" href="#S盒操作"></a></h4><ol>
+<li><p>将输入字节用其GF(2^8)上的逆元素表示（非线性变换）</p>
+<pre><code>把输入的字节看成GF(2^8)上的元素
+求出其在域上的逆元素
+用逆元素代替原输入字节</code></pre></li>
+<li><p>对第一步的结果做仿射变换（线性变换）</p>
+</li>
+</ol>
+<h4 id="行移位">行移位<a class="post-anchor" href="#行移位"></a></h4><ol>
+<li><p>对状态的行进行循环移位</p>
+</li>
+<li><p>第0行不移位，第1行移C1自己，第二行移C2字节，第三行移C3字节</p>
+</li>
+<li><p>C1~3的取值由下表规定</p>
+<pre><code>Nb  C1  C2   C3
+4    1   2    3
+6    1   2    3</code></pre></li>
+<li><p>行移位变换属于置换，是线性变换，本质在于把数据打乱重排，起扩散作用</p>
+<h4 id="列混合">列混合<a class="post-anchor" href="#列混合"></a></h4></li>
+<li><p>列混合变换把状态看作GF(2^8)上的 一个多项式a(x)，乘以一个固定的多项式c(x)，并模x^4+1</p>
+<pre><code>c(x) = 03x^3 + 01x^2 + 01x + 02</code></pre></li>
+<li><p>列混合变换属于线性变换，起扩散作用</p>
+</li>
+<li><p>c(x)与x^4+1互素，保证了c(x)存在逆多项式d(x)，只有存在d(x)才能进行解密</p>
+</li>
+</ol>
+<h4 id="轮密钥加">轮密钥加<a class="post-anchor" href="#轮密钥加"></a></h4><ol>
+<li>轮密钥与状态进行模2相加</li>
+<li>轮密钥根据密钥产生算法生成</li>
+<li>轮密钥长度等于数据块长度</li>
+</ol>
+<h4 id="轮密钥生成">轮密钥生成<a class="post-anchor" href="#轮密钥生成"></a></h4><ol>
+<li>密钥扩展</li>
+<li>轮密钥选择</li>
+</ol>
+<h5 id="密钥扩展">密钥扩展<a class="post-anchor" href="#密钥扩展"></a></h5><h5 id="轮密钥选择">轮密钥选择<a class="post-anchor" href="#轮密钥选择"></a></h5><ol>
+<li>根据分组的大小，一次从扩展密钥中去除轮密钥</li>
+<li>前Nb个字作为轮密钥0，接下来Nb个字作为轮密钥1，……</li>
+</ol>
+<h3 id="AES的解密">AES的解密<a class="post-anchor" href="#AES的解密"></a></h3><p>AES的加密算法不是对合运算；但是AES的解密算法和加密算法的结构相同<br>把加密算法的每一个变换变成其逆运算即可</p>
+<h4 id="AES的基本逆变换">AES的基本逆变换<a class="post-anchor" href="#AES的基本逆变换"></a></h4><ol>
+<li><p>轮密钥加</p>
+<pre><code>轮密钥加变化的逆就是其本身</code></pre></li>
+<li><p>行移位变换</p>
+<pre><code>行移位变换的逆是状态的后三行分别移动（Nb-Ci）位，i=1，2，3</code></pre></li>
+<li><p>列混合变换</p>
+<pre><code>把状态的每一列乘以一个固定多项式d(x),d(x)=c(x)^-1</code></pre></li>
+<li><p>S盒</p>
+<pre><code>第一步：进行逆仿射变换
+第二步：把每个字节用其在GF(2^8)中的逆来代替</code></pre></li>
+<li><p>解密的密钥扩展</p>
+<pre><code>第一步：使用与加密算法相同的密钥扩展
+第二步：把InvMixColumn（逆列混合变换）用到除去第一和最后一轮意外的所有轮密钥上</code></pre></li>
+</ol>
+<h3 id="AES的实现">AES的实现<a class="post-anchor" href="#AES的实现"></a></h3><p>基于算法的软件实现</p>
+<p>基于查表的软件实现</p>
+<pre><code>S盒查表
+列混合查表
+轮函数查表</code></pre><h3 id="AES的安全性">AES的安全性<a class="post-anchor" href="#AES的安全性"></a></h3><p>能抵御目前所有的已知攻击</p>
+<pre><code>穷举攻击、差分攻击、线性攻击、
+Square攻击、侧信道攻击</code></pre><p>目前存在低于穷举复杂度的攻击方式，但是还不能对AES造成本质威胁</p>
 
 
   
@@ -232,12 +314,10 @@
   <div class="post-guide">
     <div class="item left">
         
-          <a href="/2019/12/11/LeetCode-111/">LeetCode-111 二叉树的最小深度</a>
-        
     </div>
     <div class="item right">
         
-          <a href="/2019/12/11/LeetCode-108/">LeetCode-108 有序数组转化为二叉搜索树</a>
+          <a href="/2019/12/28/%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81/">公钥密码</a>
         
     </div>
   </div>
@@ -249,7 +329,7 @@
       本文作者：<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>
     </div>
     <div class="link">
-      永久链接：<a href="/http:/ryhenkao.github.io/2019/12/11/LeetCode-110/">/http:/ryhenkao.github.io/2019/12/11/LeetCode-110/</a>
+      永久链接：<a href="/http:/ryhenkao.github.io/2020/01/01/AES/">/http:/ryhenkao.github.io/2020/01/01/AES/</a>
     </div>
     <div class="declare">
       版权声明：本文首发于<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>的博客，转载请注明出处！
