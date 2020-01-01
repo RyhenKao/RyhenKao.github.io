@@ -204,6 +204,7 @@
     </div>
     <h2 id="AES概况">AES概况<a class="post-anchor" href="#AES概况"></a></h2><p>NIST公开征集</p>
 <pre><code>1998~2000年经历三轮审查
+
 2001年最终选定一个算法并制定其位标准</code></pre><h3 id="设计要求">设计要求<a class="post-anchor" href="#设计要求"></a></h3><p> 安全性：可抵御目前已知攻击</p>
 <p> 实用性：适应各种应用环境</p>
 <p> 扩展性：分组长度和密钥长度可扩展</p>
@@ -214,6 +215,7 @@
 <p> 整体结构：采用SP结构（S盒+P置换），基本轮函数循环迭代</p>
 <h3 id="AES的子表示与运算">AES的子表示与运算<a class="post-anchor" href="#AES的子表示与运算"></a></h3><p> AES的数据处理单位是字节和字</p>
 <pre><code>一个字=4个字节=（4×8bit）32bit 
+
 一个字可以表示为系数取自GF(2^8)上的次数低于4次的多项式</code></pre><h3 id="状态">状态<a class="post-anchor" href="#状态"></a></h3><p> 加解密状态的中间数据</p>
 <p> 以字节为元素的矩阵或是二维数组</p>
 <p> Nb——明文所含的字数</p>
@@ -284,9 +286,12 @@
 <h3 id="AES的实现">AES的实现<a class="post-anchor" href="#AES的实现"></a></h3><p>基于算法的软件实现</p>
 <p>基于查表的软件实现</p>
 <pre><code>S盒查表
+
 列混合查表
+
 轮函数查表</code></pre><h3 id="AES的安全性">AES的安全性<a class="post-anchor" href="#AES的安全性"></a></h3><p>能抵御目前所有的已知攻击</p>
 <pre><code>穷举攻击、差分攻击、线性攻击、
+
 Square攻击、侧信道攻击</code></pre><p>目前存在低于穷举复杂度的攻击方式，但是还不能对AES造成本质威胁</p>
 
 
