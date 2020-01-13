@@ -229,10 +229,11 @@
 
 
 
-<h2 id="AEAD">AEAD<a class="post-anchor" href="#AEAD"></a></h2><h3 id="AEAD的定义">AEAD的定义<a class="post-anchor" href="#AEAD的定义"></a></h3><p>· AEAD是一种同时提供保密性以及完整性（认证）的加密系统。</p>
+<h2 id="AEAD">AEAD<a class="post-anchor" href="#AEAD"></a></h2><h3 id="AEAD的定义">AEAD的定义<a class="post-anchor" href="#AEAD的定义"></a></h3><p>· 带关联数据的身份验证加密（AEAD）提供了身份验证加密（机密性和身份验证）以及检查以明文形式发送的其他身份验证数据（AAD）的完整性和身份验证的能力。</p>
 <h3 id="AEAD的常用模式">AEAD的常用模式<a class="post-anchor" href="#AEAD的常用模式"></a></h3><p>· 对于消息M有四种同时提供保密性以及完整性的通用方案</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1. 先Hash再加密。对于明文M使用Hash函数计算H(M),再将M与H(M)一起加密：E(K,(M,H(M)))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">2. 先认证再加密。使用两个密钥K1，K2。先计算明文M的MAC值T&#x3D;MAC(K1,M),再将MAC值与明文一起加密：E(K2,(M,T))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">3. 先加密再认证。使用两个密钥K1，K2。先对明文M加密得到密文C&#x3D;E(K2,M),再计算密文C的MAC值T&#x3D;MAC(K1,C)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">4. 独立进行加密和认证。</span></pre></td></tr></table></figure>
 
+<p>· OCB<br>· GCM<br>· CCM</p>
 
 
   
