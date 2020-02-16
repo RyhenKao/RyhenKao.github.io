@@ -16,13 +16,18 @@
     <meta name="description" content="" />
     
     <title>
-      归档2020 - Ryhen&#39;blog |Code|Life|Love
+      LeetCode-003 - Ryhen&#39;blog |Code|Life|Love
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon1.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/style/style.css">
   </head>
   <body>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#思路："><span class="toc-text">思路：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#滑动窗口"><span class="toc-text">滑动窗口</span></a></li></ol></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -57,7 +62,7 @@
           首页
         </a>
         
-        <a href="/archives" class="current">
+        <a href="/archives" class="">
           归档
         </a>
         
@@ -111,7 +116,7 @@
             首页
           </a>
           
-          <a href="/archives" class="current">
+          <a href="/archives" class="">
             归档
           </a>
           
@@ -156,70 +161,102 @@
     </div>
     <div id="container">
       <div class="main animated bounceInRight delay-0.7s">
-        <div id="archives">
-    
-        <div class="title">
-            归档 
-             - 2020
-        </div>
-    
-
-
-
-
-    
-    
-    <section class="wrap">
-        <div class="meta">
-            <a href="/archives/2020" >
-                2020
-            </a>
-        </div>
-        <div class="year">
-            
-            <article class="item">
-            <a href="/2020/01/01/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/" title="哈希函数">
-                <span>2020/01/01</span>
-                <span>哈希函数</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/01/01/MAC%E4%B8%8EAEAD/" title="MAC与AEAD">
-                <span>2020/01/01</span>
-                <span>MAC与AEAD</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/01/01/RSA/" title="RSA">
-                <span>2020/01/01</span>
-                <span>RSA</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/01/01/AES/" title="AES">
-                <span>2020/01/01</span>
-                <span>AES</span>
-            </a>
-            </article>
-            
-    
-        </div>
-    </section>
+        <article class="post-entry">
+    <div class="header">
       
-<div class="paginator">
-    <a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span>
-</div>
-</div>
+      <div class="title">LeetCode-003</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/02/16</span>
+        </span>
 
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Study">Study</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/LeetCode">LeetCode</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <p><a href="/2020/02/16/LeetCode-003/pic.png" data-caption="题目" data-fancybox="images"><img src="/2020/02/16/LeetCode-003/pic.png" alt="题目"></a></p>
+<h4 id="思路：">思路：<a class="post-anchor" href="#思路："></a></h4><h5 id="滑动窗口">滑动窗口<a class="post-anchor" href="#滑动窗口"></a></h5><p>滑动窗口可以理解为一种特殊的队列。以本题为例，当入队的元素与原有队列中的元素相同的时候，我们就需要将整个队列向后移动，直到满足题意为止，即我们需要将队首向后移动直到将与新入队元素相同的那个元素移出队列为止</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">class Solution:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    def lengthOfLongestSubstring(self, s: str) -&gt; int:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        from collections import defaultdict</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        lookup &#x3D; defaultdict(int)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        start &#x3D; 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        end &#x3D; 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        max_len &#x3D; 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        counter &#x3D; 0 #记录冲突数量</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        while end &lt; len(s):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            if lookup[s[end]] &gt; 0:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">                counter +&#x3D; 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">            lookup[s[end]] +&#x3D; 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">            end +&#x3D; 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">            while counter &gt; 0:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">                if lookup[s[start]] &gt; 1:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">                    counter -&#x3D; 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">                lookup[s[start]] -&#x3D; 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">                start +&#x3D; 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">            max_len &#x3D; max(max_len, end - start)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        return max_len</span></pre></td></tr></table></figure>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.jpg" target="_block" class="bg" style="background-image:url('/images/zhifubao.jpg')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.jpg" target="_block" class="bg" style="background-image:url('/images/weixin.jpg')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020/01/14/LeetCode-350/">LeetCode-350</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="/http:/ryhenkao.github.io/2020/02/16/LeetCode-003/">/http:/ryhenkao.github.io/2020/02/16/LeetCode-003/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="/http:/ryhenkao.github.io">Ryhen Kao</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
         <footer>
           <div class="copyright">
             ©2020
